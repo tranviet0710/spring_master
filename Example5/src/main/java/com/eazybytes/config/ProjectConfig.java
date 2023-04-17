@@ -2,6 +2,7 @@ package com.eazybytes.config;
 
 import com.eazybytes.beans.Person;
 import com.eazybytes.beans.Vehicle;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +19,10 @@ public class ProjectConfig {
     }
 
     @Bean
-    public Person person(){
+    public Person person(Vehicle vehicle){
         Person person = new Person();
         person.setName("Tokuda");
-        person.setVehicle(vehicle());
+        person.setVehicle(vehicle);
         return person;
     }
 }
