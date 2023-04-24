@@ -44,5 +44,10 @@ public class CustomerController {
                 }
         ).orElseGet(()-> customerRepository.save(updatedCustomer));
     }
+
+    @GetMapping("/")
+    public String welcome(){
+        return "Welcome to Customer page";
+    }
 }
 

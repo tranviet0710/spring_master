@@ -1,12 +1,12 @@
 package org.customer;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Primary;
 
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_entity_seq")
+    @SequenceGenerator(name = "my_entity_seq", sequenceName = "my_entity_sequence", allocationSize = 1)
     private Long id;
     private String name;
     private String email;
