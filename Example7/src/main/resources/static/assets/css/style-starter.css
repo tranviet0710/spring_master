@@ -259,8 +259,8 @@ samp {
   font-family: var(--bs-font-monospace);
   font-size: 1em;
   direction: ltr
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
   unicode-bidi: bidi-override;
 }
 
@@ -3948,11 +3948,11 @@ fieldset:disabled .btn {
 
 .dropdown-menu-start[data-bs-popper] {
   right: auto
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
   left: 0
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
 }
 
 .dropdown-menu-end {
@@ -3961,11 +3961,11 @@ fieldset:disabled .btn {
 
 .dropdown-menu-end[data-bs-popper] {
   right: 0
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
   left: auto
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
 }
 
 @media (min-width: 576px) {
@@ -3975,11 +3975,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-sm-start[data-bs-popper] {
     right: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 
   .dropdown-menu-sm-end {
@@ -3988,11 +3988,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-sm-end[data-bs-popper] {
     right: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -4003,11 +4003,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-md-start[data-bs-popper] {
     right: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 
   .dropdown-menu-md-end {
@@ -4016,11 +4016,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-md-end[data-bs-popper] {
     right: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -4031,11 +4031,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-lg-start[data-bs-popper] {
     right: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 
   .dropdown-menu-lg-end {
@@ -4044,11 +4044,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-lg-end[data-bs-popper] {
     right: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -4059,11 +4059,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-xl-start[data-bs-popper] {
     right: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 
   .dropdown-menu-xl-end {
@@ -4072,11 +4072,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-xl-end[data-bs-popper] {
     right: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -4087,11 +4087,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-xxl-start[data-bs-popper] {
     right: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 
   .dropdown-menu-xxl-end {
@@ -4100,11 +4100,11 @@ fieldset:disabled .btn {
 
   .dropdown-menu-xxl-end[data-bs-popper] {
     right: 0
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
     left: auto
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -5221,8 +5221,8 @@ fieldset:disabled .btn {
   padding-right: 0.5rem;
   color: #6c757d;
   content: var(--bs-breadcrumb-divider, "/")
-    /* rtl: var(--bs-breadcrumb-divider, "/") */
-  ;
+  /* rtl: var(--bs-breadcrumb-divider, "/") */
+;
 }
 
 .breadcrumb-item.active {
@@ -6463,8 +6463,8 @@ fieldset:disabled .btn {
   position: absolute;
   top: 0;
   left: 0
-    /* rtl:ignore */
-  ;
+  /* rtl:ignore */
+;
   z-index: 1070;
   display: block;
   max-width: 276px;
@@ -6842,16 +6842,16 @@ fieldset:disabled .btn {
 @-webkit-keyframes spinner-border {
   to {
     transform: rotate(360deg)
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
 @keyframes spinner-border {
   to {
     transform: rotate(360deg)
-      /* rtl:ignore */
-    ;
+    /* rtl:ignore */
+  ;
   }
 }
 
@@ -20973,6 +20973,132 @@ h4.inner-text-title {
 }
 
 /* //inner banner */
+
+/* holidays section */
+.w3l-timeline-1 {
+  background: var(--bg-light);
+}
+
+.w3l-timeline-1 .timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.w3l-timeline-1 .timeline:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 55px;
+  width: 3px;
+  height: calc(100% - 10px);
+  background: var(--primary-color);
+}
+
+.w3l-timeline-1 .timeline .column {
+  margin: 0px 40px 40px 120px;
+}
+
+.w3l-timeline-1 h5.sub-title-timeline {
+  font-size: 24px;
+  line-height: 34px;
+  margin-bottom: 1em;
+  margin-left: 2em;
+}
+
+.w3l-timeline-1 h5.sub-title-timeline i {
+  color: var(--primary-color);
+}
+
+.w3l-timeline-1 .timeline .column .title h2 {
+  font-size: 21px;
+  line-height: 31px;
+  font-weight: 600;
+  position: relative;
+}
+
+.w3l-timeline-1 .timeline .column .title h2:before {
+  content: "";
+  position: absolute;
+  left: -73px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+}
+
+.description h6 {
+  color: var(--primary-color);
+  margin-top: 15px;
+}
+
+.w3l-timeline-1 .main {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 80px;
+}
+
+.w3l-timeline-1 .main h1 {
+  font-size: 80px;
+  line-height: 60px;
+}
+
+.w3l-timeline-1 .main p {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: serif;
+  text-align: right;
+}
+
+@media (max-width: 1280px) {}
+
+@media (max-width: 1080px) {}
+
+@media (max-width: 800px) {
+  .w3l-timeline-1 .timeline .column {
+    margin: 0px 0px 40px 120px;
+  }
+}
+
+@media (max-width: 568px) {
+  .w3l-timeline-1 .timeline .column {
+    margin: 0px 0px 40px 60px;
+  }
+
+  .w3l-timeline-1 .timeline::before {
+    left: 15px;
+  }
+
+  .w3l-timeline-1 .timeline .column .title h2:before {
+    left: -53px;
+    top: 7px;
+  }
+
+  .w3l-timeline-1 h5.sub-title-timeline {
+    margin-left: .4em;
+  }
+}
+
+@media (max-width: 400px) {
+  .w3l-timeline-1 .timeline .column {
+    margin: 0px 0px 40px 40px;
+  }
+
+  .w3l-timeline-1 .timeline .column .title h2 {
+    font-size: 19px;
+    line-height: 28px;
+  }
+
+  .w3l-timeline-1 .timeline .column .title h2:before {
+    left: -32px;
+    top: 4px;
+  }
+}
+
+/* holidays section */
 
 /* contact section */
 .contact-block input,
