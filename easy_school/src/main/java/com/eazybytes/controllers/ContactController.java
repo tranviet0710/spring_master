@@ -2,10 +2,14 @@ package com.eazybytes.controllers;
 
 import com.eazybytes.model.Contact;
 import com.eazybytes.services.ContactService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +31,8 @@ public class ContactController {
 
 
     @RequestMapping("/contact")
-    public String displayContactPage(){
+    public String displayContactPage(Model model){
+        model.addAttribute("contact", new Contact());
         return "contact";
     }
 
@@ -44,9 +49,15 @@ public class ContactController {
 //    }
 
     @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
-    public ModelAndView saveMessage(Contact contact){
+    public String saveMessage(@Valid @ModelAttribute(name = "contact") Contact contact, Errors errors){
+        if(errors.hasErrors()){
+            log.error("Contact form validation failed due to: " + errors.toString());
+//          render template and send it as a response without removing old model attribute
+            return "contact.html";
+        }
         contactService.sendMessageDetails(contact);
-        return new ModelAndView("redirect:/contact");
+//        refresh page using redirect to redirect client request to another controller (URL)
+        return "redirect:/contact";
     }
 }
 
