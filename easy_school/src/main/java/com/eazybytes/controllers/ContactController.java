@@ -12,7 +12,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author VietDev
@@ -56,6 +55,7 @@ public class ContactController {
             return "contact.html";
         }
         contactService.sendMessageDetails(contact);
+        log.info("Contact Service was called " + (contactService.counter + 1) + " times!");
 //        refresh page using redirect to redirect client request to another controller (URL)
         return "redirect:/contact";
     }
