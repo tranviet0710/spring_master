@@ -30,7 +30,7 @@ public class ContactController {
 
 
     @RequestMapping("/contact")
-    public String displayContactPage(Model model){
+    public String displayContactPage(Model model) {
         model.addAttribute("contact", new Contact());
         return "contact";
     }
@@ -48,14 +48,15 @@ public class ContactController {
 //    }
 
     @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
-    public String saveMessage(@Valid @ModelAttribute(name = "contact") Contact contact, Errors errors){
-        if(errors.hasErrors()){
-            log.error("Contact form validation failed due to: " + errors.toString());
+    public String saveMessage(@Valid @ModelAttribute(name = "contact") Contact contact, Errors errors) {
+        if (errors.hasErrors()) {
+            log.error("Contact form validation failed due to: " + errors);
 //          render template and send it as a response without removing old model attribute
             return "contact.html";
         }
         contactService.sendMessageDetails(contact);
-        log.info("Contact Service was called " + (contactService.counter + 1) + " times!");
+        contactService.setCounter(contactService.getCounter() + 1);
+        log.info("Number of times the Contact form is submitted : " +  contactService.getCounter());
 //        refresh page using redirect to redirect client request to another controller (URL)
         return "redirect:/contact";
     }
