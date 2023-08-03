@@ -54,10 +54,7 @@ public class ContactController {
 //          render template and send it as a response without removing old model attribute
             return "contact.html";
         }
-        contactService.sendMessageDetails(contact);
-        contactService.setCounter(contactService.getCounter() + 1);
-        log.info("Number of times the Contact form is submitted : " +  contactService.getCounter());
-//        refresh page using redirect to redirect client request to another controller (URL)
+        contactService.saveContactMessage(contact);
         return "redirect:/contact";
     }
 }

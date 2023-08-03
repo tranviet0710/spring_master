@@ -1,11 +1,14 @@
 package com.eazybytes.services;
 
+import com.eazybytes.ContactRepository;
+import com.eazybytes.constants.EazySchoolConstants;
 import com.eazybytes.model.Contact;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
-import org.springframework.web.context.annotation.RequestScope;
-import org.springframework.web.context.annotation.SessionScope;
+
+import java.time.LocalDateTime;
 
 /**
  * @author VietDev
@@ -18,21 +21,20 @@ import org.springframework.web.context.annotation.SessionScope;
 //@SessionScope
 @ApplicationScope
 public class ContactService {
-    private int counter = 0;
-//    private static final Logger log = LoggerFactory.getLogger(ContactService.class);
-    public ContactService(){
-        log.info("Contact service constructor called.");
-    }
-    public void sendMessageDetails(Contact contact){
-        log.info(contact.toString());
-    }
+    @Autowired
+    private ContactRepository contactRepository;
 
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
+    //    private static final Logger log = LoggerFactory.getLogger(ContactService.class);
+    public boolean saveContactMessage(Contact contact) {
+        boolean isSaved = false;
+        contact.setCreatedAt(LocalDateTime.now());
+        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
+        contact.setStatus(EazySchoolConstants.OPEN);
+        int result = contactRepository.saveContactMessage(contact);
+        if (result > 0) {
+            isSaved = true;
+        }
+        return isSaved;
     }
 }
 
