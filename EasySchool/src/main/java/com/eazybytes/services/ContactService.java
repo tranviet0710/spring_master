@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author VietDev
@@ -35,6 +36,10 @@ public class ContactService {
             isSaved = true;
         }
         return isSaved;
+    }
+
+    public List<Contact> getAllContactMessages(String status) {
+        return contactRepository.getAllMessages(status);
     }
 }
 

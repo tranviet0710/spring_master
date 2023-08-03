@@ -1,5 +1,6 @@
 package com.eazybytes.controllers;
 
+import com.eazybytes.constants.EazySchoolConstants;
 import com.eazybytes.model.Contact;
 import com.eazybytes.services.ContactService;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author VietDev
@@ -56,6 +58,14 @@ public class ContactController {
         }
         contactService.saveContactMessage(contact);
         return "redirect:/contact";
+    }
+
+    @RequestMapping(value="/displayMessages", method = RequestMethod.GET)
+    public ModelAndView displayMessages(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("messages.html");
+        modelAndView.addObject("contactMsgs", contactService.getAllContactMessages(EazySchoolConstants.OPEN));
+        return modelAndView;
     }
 }
 
