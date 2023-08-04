@@ -47,14 +47,15 @@ Author URL: http://w3layouts.com
         <div class="row">
             <div class="col-lg-6" th:if="${festival}">
                 <h5 class="sub-title-timeline"><i class="fas fa-snowman"></i> Festival Holidays</h5>
-                <div class="timeline" >
+                <div class="timeline">
                     <div class="timeline">
                         <div th:each="holiday : ${FESTIVAL}" class="column">
                             <div class="title">
                                 <h2 th:text="${holiday.reason}"></h2>
                             </div>
                             <div class="description">
-                                <h6 th:text="${holiday.day}" class="fas fa-calendar-alt"><i class="fas fa-calendar-alt"></i></h6>
+                                <h6 th:text="${holiday.day}" class="fas fa-calendar-alt"><i
+                                        class="fas fa-calendar-alt"></i></h6>
                             </div>
                         </div>
                     </div>
@@ -69,7 +70,8 @@ Author URL: http://w3layouts.com
                             <h2 th:text="${holiday.reason}"></h2>
                         </div>
                         <div class="description">
-                            <h6 th:text="${holiday.day}" class="fas fa-calendar-alt"><i class="fas fa-calendar-alt"></i></h6>
+                            <h6 th:text="${holiday.day}" class="fas fa-calendar-alt"><i class="fas fa-calendar-alt"></i>
+                            </h6>
                         </div>
                     </div>
                 </div>

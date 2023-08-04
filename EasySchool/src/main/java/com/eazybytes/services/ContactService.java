@@ -1,8 +1,8 @@
 package com.eazybytes.services;
 
-import com.eazybytes.ContactRepository;
 import com.eazybytes.constants.EazySchoolConstants;
 import com.eazybytes.model.Contact;
+import com.eazybytes.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +40,10 @@ public class ContactService {
 
     public List<Contact> getAllContactMessages(String status) {
         return contactRepository.getAllMessages(status);
+    }
+
+    public void closeMessage(int id, String name) {
+        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name);
     }
 }
 

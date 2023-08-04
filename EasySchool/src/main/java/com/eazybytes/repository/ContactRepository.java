@@ -1,15 +1,16 @@
-package com.eazybytes;
+package com.eazybytes.repository;
 
 import com.eazybytes.model.Contact;
 import com.eazybytes.rowmappers.ContactRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.ArgumentPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -24,6 +25,7 @@ public class ContactRepository {
             "CONTACT_MSG (NAME,MOBILE_NUM,EMAIL,SUBJECT,MESSAGE,STATUS,CREATED_AT,CREATED_BY) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String getAllMessages = "SELECT * FROM CONTACT_MSG WHERE STATUS = ?";
+    private final String closeMessage = "UPDATE CONTACT_MSG SET STATUS=?, UPDATED_BY=?, UPDATED_AT=? WHERE CONTACT_ID=?";
 
     @Autowired
     public ContactRepository(JdbcTemplate jdbcTemplate) {
@@ -44,6 +46,24 @@ public class ContactRepository {
                 ps.setString(1, status);
             }
         }, new ContactRowMapper());
+    }
+
+    public boolean closeMessage(int id, String close, String name) {
+        boolean isUpdated = false;
+        int result = jdbcTemplate.update(closeMessage, new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, close);
+                ps.setString(2, name);
+                ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                ps.setInt(4, id);
+            }
+        });
+
+        if (result > 0) {
+            isUpdated = true;
+        }
+        return isUpdated;
     }
 }
 

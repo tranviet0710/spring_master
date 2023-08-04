@@ -1,7 +1,6 @@
 package com.eazybytes.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-    @RequestMapping(value={"","/","home"})
-    public String displayHomepage(){
+    @RequestMapping(value = {"", "/", "home"})
+    public String displayHomepage() {
         return "home.html";
     }
 

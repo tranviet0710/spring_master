@@ -21,7 +21,7 @@ public class ContactRowMapper implements RowMapper<Contact> {
         contact.setEmail(rs.getString("EMAIL"));
         contact.setSubject(rs.getString("SUBJECT"));
         contact.setMessage(rs.getString("MESSAGE"));
-        contact.setMessage(rs.getString("STATUS"));
+        contact.setStatus(rs.getString("STATUS"));
         if (rs.getTimestamp("CREATED_AT") != null) {
             contact.setCreatedAt(rs.getTimestamp("CREATED_AT").toLocalDateTime());
         }

@@ -4,7 +4,7 @@ Author URL: http://w3layouts.com
 -->
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+>
 
 <head>
     <!-- Required meta tags -->
@@ -48,11 +48,11 @@ Author URL: http://w3layouts.com
                 <form th:action="@{/login}" method="post" class="signin-form">
                     <div class="col-md-8 login-center input-grids">
                         <li class="alert alert-danger" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
-                            th:text="${errorMessage}" />
+                            th:text="${errorMessage}"/>
                         <input type="text" name="username" id="username" placeholder="Username"
-                               class="login-input" />
+                               class="login-input"/>
                         <input type="password" name="password" id="password" placeholder="Password"
-                               class="login-input" />
+                               class="login-input"/>
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     </div>
                     <div class="col-md-8 login-center text-start">

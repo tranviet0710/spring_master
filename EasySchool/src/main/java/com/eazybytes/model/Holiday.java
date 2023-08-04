@@ -15,7 +15,7 @@ public class Holiday {
     private String reason;
     private Type type;
 
-    public enum Type{
+    public enum Type {
         FESTIVAL, FEDERAL
     }
 }

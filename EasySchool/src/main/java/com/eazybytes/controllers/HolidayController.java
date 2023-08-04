@@ -4,7 +4,6 @@ import com.eazybytes.model.Holiday;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class HolidayController {
     @GetMapping("/holidays")
     public String displayHolidaysPage(@RequestParam(required = false) boolean festival,
                                       @RequestParam(required = false) boolean federal,
-                                      Model model){
+                                      Model model) {
         List<Holiday> holidays = Arrays.asList(
                 new Holiday(" Jan 1 ", "New Year's Day", Holiday.Type.FESTIVAL),
                 new Holiday(" Oct 31 ", "Halloween", Holiday.Type.FESTIVAL),
@@ -34,7 +33,7 @@ public class HolidayController {
         );
 //        filter by Holiday type and send to the UI
         Holiday.Type[] types = Holiday.Type.values();
-        for(Holiday.Type type: types){
+        for (Holiday.Type type : types) {
             model.addAttribute(type.toString(),
                     holidays.stream().filter(holiday -> holiday.getType().equals(type)).collect(Collectors.toList()));
         }

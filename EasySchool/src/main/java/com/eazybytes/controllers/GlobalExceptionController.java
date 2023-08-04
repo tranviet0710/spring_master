@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalExceptionController {
     @ExceptionHandler(Exception.class)
-    public ModelAndView exceptionHandler(Exception ex){
+    public ModelAndView exceptionHandler(Exception ex) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error");
         modelAndView.addObject("errormsg", ex.getMessage());
