@@ -2,6 +2,8 @@ package com.eazybytes.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author VietDev
@@ -9,8 +11,7 @@ import lombok.Data;
  * @role
  */
 @Data
-@AllArgsConstructor
-public class Holiday {
+public class Holiday extends BaseEntity{
     private String day;
     private String reason;
     private Type type;
