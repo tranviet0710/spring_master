@@ -4,7 +4,7 @@ Author URL: http://w3layouts.com
 -->
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <!-- Required meta tags -->
@@ -27,38 +27,52 @@ Author URL: http://w3layouts.com
 <section class="inner-banner py-5">
     <div class="w3l-breadcrumb py-lg-5">
         <div class="container pt-4 pb-sm-4">
-            <h4 class="inner-text-title pt-5">Oops...</h4>
+            <h4 class="inner-text-title pt-5">Dashboard</h4>
             <ul class="breadcrumbs-custom-path">
                 <li><a th:href="@{/home}">Home</a></li>
-                <li class="active"><i class="fas fa-angle-right"></i>Error</li>
+                <li class="active"><i class="fas fa-angle-right"></i>Dashboard</li>
             </ul>
         </div>
     </div>
 </section>
 <!-- //inner banner -->
 
-<!-- error block -->
-<section class="page_404">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 ">
-                <div class="col-sm-10 col-sm-offset-1  text-center">
-                    <div class="four_zero_four_bg">
-                        <h1 class="text-center">oops...</h1>
-                    </div>
-                    <div class="contant_box_404">
-                        <h3 class="h2">
-                            Look like you're lost
-                        </h3>
-                        <p th:text="${'Error Message - ' + errormsg}"></p>
-                        <a th:href="@{/home}" class="link_404 btn btn-style btn-style-3">Go to Home</a>
-                    </div>
+<!-- welcome block -->
+<section class="w3l-contact py-5" id="contact">
+    <div class="container py-md-5 py-4">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+            <h3 class="title-style" th:text="${'Welcome - ' + username}"></h3>
+            <p class="" th:text="${'You logged in as - ' + roles}"></p>
+        </div>
+
+    </div>
+</section>
+<!-- //welcome block -->
+
+<div class="container py-md-5 py-4">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row m-t-25">
+                <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/displayMessages}">
+                        <div class="overview-item overview-item--c3">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fas fa-envelope-open-text"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Messages</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- //error block -->
+</div>
 
 <!-- footer block -->
 <div th:replace="~{footer :: footer}">...</div>
@@ -139,7 +153,7 @@ Author URL: http://w3layouts.com
 <!-- //disable body scroll which navbar is in active -->
 
 <!-- bootstrap -->
-<script src="/assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 <!-- //bootstrap -->
 <!-- //Js scripts -->
 </body>
