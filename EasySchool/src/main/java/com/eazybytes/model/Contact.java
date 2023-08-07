@@ -1,10 +1,12 @@
 package com.eazybytes.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author VietDev
@@ -12,7 +14,12 @@ import lombok.Data;
  * @role
  */
 @Data
+@Entity
+@Table(name = "contact_msg")
 public class Contact extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private Integer contactID;
     /*
     * @NotNull: Checks if a given field is not null but allows empty values & zero elements inside collections.

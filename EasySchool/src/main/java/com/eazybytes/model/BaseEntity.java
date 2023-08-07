@@ -1,5 +1,6 @@
 package com.eazybytes.model;
 
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
  * @role
  */
 @Data
+@MappedSuperclass
 public class BaseEntity {
     private LocalDateTime createdAt;
     private String createdBy;

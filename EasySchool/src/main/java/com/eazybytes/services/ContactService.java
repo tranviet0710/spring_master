@@ -31,19 +31,20 @@ public class ContactService {
         contact.setCreatedAt(LocalDateTime.now());
         contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
         contact.setStatus(EazySchoolConstants.OPEN);
-        int result = contactRepository.saveContactMessage(contact);
-        if (result > 0) {
+        try {
+            contactRepository.save(contact);
             isSaved = true;
+        } catch (Exception ex) {
         }
         return isSaved;
     }
 
     public List<Contact> getAllContactMessages(String status) {
-        return contactRepository.getAllMessages(status);
+        return contactRepository.getContactsByStatus(status);
     }
 
-    public void closeMessage(int id, String name) {
-        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name);
-    }
+//    public void closeMessage(int id, String name) {
+//        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name);
+//    }
 }
 

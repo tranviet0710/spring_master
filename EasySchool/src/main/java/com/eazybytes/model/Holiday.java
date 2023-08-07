@@ -1,9 +1,7 @@
 package com.eazybytes.model;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author VietDev
@@ -11,9 +9,13 @@ import lombok.RequiredArgsConstructor;
  * @role
  */
 @Data
-public class Holiday extends BaseEntity{
+@Entity
+@Table(name = "holidays")
+public class Holiday extends BaseEntity {
+    @Id
     private String day;
     private String reason;
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     public enum Type {

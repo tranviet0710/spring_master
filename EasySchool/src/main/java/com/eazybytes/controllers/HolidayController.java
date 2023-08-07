@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HolidayController {
     private final HolidayService holidayService;
+
     @GetMapping("/holidays")
     public String displayHolidaysPage(@RequestParam(required = false) boolean festival,
                                       @RequestParam(required = false) boolean federal,
