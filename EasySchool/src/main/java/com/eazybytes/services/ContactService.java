@@ -43,8 +43,8 @@ public class ContactService {
         return contactRepository.getContactsByStatus(status);
     }
 
-//    public void closeMessage(int id, String name) {
-//        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name);
-//    }
+    public void closeMessage(int id, String name) {
+        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name, LocalDateTime.now());
+    }
 }
 

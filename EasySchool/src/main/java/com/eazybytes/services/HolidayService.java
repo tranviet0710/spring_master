@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 /**
  * @author VietDev
@@ -18,7 +19,7 @@ public class HolidayService {
     private final HolidayRepository holidayRepository;
 
     public List<Holiday> getAllHolidays() {
-        return holidayRepository.findAll();
+        return StreamSupport.stream(holidayRepository.findAll().spliterator(), false).toList();
     }
 }
 
