@@ -28,8 +28,8 @@ public class ContactService {
     //    private static final Logger log = LoggerFactory.getLogger(ContactService.class);
     public boolean saveContactMessage(Contact contact) {
         boolean isSaved = false;
-        contact.setCreatedAt(LocalDateTime.now());
-        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
+//        contact.setCreatedAt(LocalDateTime.now());
+//        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
         contact.setStatus(EazySchoolConstants.OPEN);
         try {
             contactRepository.save(contact);
@@ -43,8 +43,8 @@ public class ContactService {
         return contactRepository.getContactsByStatus(status);
     }
 
-    public void closeMessage(int id, String name) {
-        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE, name, LocalDateTime.now());
+    public void closeMessage(int id) {
+        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE);
     }
 }
 

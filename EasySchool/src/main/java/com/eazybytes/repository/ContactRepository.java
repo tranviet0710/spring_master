@@ -23,7 +23,7 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Contact c SET c.status = :status, c.updatedBy = :name, c.updatedAt=:updatedAt WHERE c.contactID = :id")
-    void closeMessage(@PathParam("id") Integer id, @PathParam("status") String status, @PathParam("name") String name, @PathParam("updatedAt") LocalDateTime updatedAt);
+    @Query("UPDATE Contact c SET c.status = :status WHERE c.contactID = :id")
+    void closeMessage(@PathParam("id") Integer id, @PathParam("status") String status);
 }
 
