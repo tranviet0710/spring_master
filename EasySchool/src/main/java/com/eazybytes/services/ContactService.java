@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -44,7 +43,12 @@ public class ContactService {
     }
 
     public void closeMessage(int id) {
-        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE);
+//        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE);
+        Contact contact = contactRepository.findById(id).orElse(null);
+        if (contact != null) {
+            contact.setStatus(EazySchoolConstants.CLOSE);
+            contactRepository.save(contact);
+        }
     }
 }
 
