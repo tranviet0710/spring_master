@@ -1,9 +1,6 @@
 package com.eazybytes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,13 +11,12 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Data
-public class Role extends BaseEntity {
+public class Roles extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Integer roleId;
 
     private String roleName;
-
 }
 

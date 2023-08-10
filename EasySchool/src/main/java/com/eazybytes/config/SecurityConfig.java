@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -50,8 +52,8 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login?logout=true")
                         .invalidateHttpSession(true)
                         .permitAll())
-                .httpBasic(Customizer.withDefaults())
-                .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+                .httpBasic(Customizer.withDefaults());
+//                .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
         return http.build();
     }
 
@@ -61,5 +63,10 @@ public class SecurityConfig {
 //        UserDetails admin = User.withDefaultPasswordEncoder().username("admin").password("54321").roles("ADMIN").build();
 //        return new InMemoryUserDetailsManager(user, admin);
 //    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
 
