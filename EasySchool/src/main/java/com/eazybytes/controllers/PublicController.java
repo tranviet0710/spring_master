@@ -22,21 +22,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class PublicController {
     private final PersonService personService;
+
     @GetMapping("/register")
-    public String displayRegisterPage(Model model){
+    public String displayRegisterPage(Model model) {
         model.addAttribute("person", new Person());
         return "register.html";
     }
 
     @PostMapping("/createUser")
-    public String createUser(@Valid @ModelAttribute("person") Person person, Errors errors){
-        if(errors.hasErrors()){
+    public String createUser(@Valid @ModelAttribute("person") Person person, Errors errors) {
+        if (errors.hasErrors()) {
             return "register.html";
         }
         Person createdPerson = personService.createUser(person);
-        if(createdPerson!=null){
+        if (createdPerson != null && createdPerson.getPersonId() > 0) {
             return "redirect:/login?register=true";
-        }else {
+        } else {
             return "register.html";
         }
     }

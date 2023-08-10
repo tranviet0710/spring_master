@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Data
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")

@@ -12,7 +12,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldsValueMatch {
     String message() default "Fields value don't match!";
-    Class<?> [] groups() default {};
+
+    Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 
     String field();
@@ -21,7 +23,7 @@ public @interface FieldsValueMatch {
 
     @Target({ElementType.TYPE})
     @Retention(RetentionPolicy.RUNTIME)
-    @interface List{
+    @interface List {
         FieldsValueMatch[] value();
     }
 }
