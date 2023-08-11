@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -15,7 +17,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name="class")
-@Data
+@Getter
+@Setter
 public class EazyClass extends BaseEntity{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
