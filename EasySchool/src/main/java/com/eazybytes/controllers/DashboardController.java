@@ -1,5 +1,10 @@
 package com.eazybytes.controllers;
 
+import com.eazybytes.model.Person;
+import com.eazybytes.model.Profile;
+import com.eazybytes.repository.PersonRepository;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @role
  */
 @Controller
+@RequiredArgsConstructor
 public class DashboardController {
-    @RequestMapping(value = "/dashboard", method = {RequestMethod.GET})
-    public String displayDashboardPage(Authentication authentication, Model model) throws Exception {
-        model.addAttribute("username", authentication.getName());
+    private final PersonRepository personRepository;
+    @RequestMapping(value = "/dashboard", method = {RequestMethod.GET, RequestMethod.POST})
+    public String displayDashboardPage(Authentication authentication, Model model, HttpSession session) throws Exception {
+        Person person = personRepository.getByEmail(authentication.getName());
+        model.addAttribute("username", person.getName());
         model.addAttribute("roles", authentication.getAuthorities().toString());
+        session.setAttribute("person", person);
 //        throw new Exception("It's been a bad day!");
         return "dashboard.html";
     }

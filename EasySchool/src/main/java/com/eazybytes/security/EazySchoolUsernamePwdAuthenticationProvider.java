@@ -34,7 +34,7 @@ public class EazySchoolUsernamePwdAuthenticationProvider implements Authenticati
         String pwd = authentication.getCredentials().toString();
         Person person = personRepository.getByEmail(email);
         if (person != null && person.getPersonId() > 0 && passwordEncoder.matches(pwd, person.getPwd())) {
-            return new UsernamePasswordAuthenticationToken(person.getName(), pwd, getGrantedAuthorities(person.getRoles()));
+            return new UsernamePasswordAuthenticationToken(person.getEmail(), null, getGrantedAuthorities(person.getRoles()));
         }
         else {
             throw new BadCredentialsException("Bad credentials!");
