@@ -25,7 +25,7 @@ public class DashboardController {
         Person person = personRepository.getByEmail(authentication.getName());
         model.addAttribute("username", person.getName());
         model.addAttribute("roles", authentication.getAuthorities().toString());
-        session.setAttribute("person", person);
+        session.setAttribute("authenticatedUser", person);
 //        throw new Exception("It's been a bad day!");
         return "dashboard.html";
     }

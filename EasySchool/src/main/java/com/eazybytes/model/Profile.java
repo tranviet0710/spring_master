@@ -4,7 +4,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author VietDev
@@ -44,17 +46,6 @@ public class Profile {
     @Pattern(regexp="(^$|[0-9]{5})",message = "Zip Code must be 5 digits")
     private String zipCode;
 
-    public Profile(Person person){
-        this.name = person.getName();
-        this.email = person.getEmail();
-        this.mobileNumber = person.getMobileNumber();
-        if(person.getAddress() != null && person.getAddress().getAddressId() > 0){
-            this.address1 = person.getAddress().getAddress1();
-            this.address2 = person.getAddress().getAddress2();
-            this.city = person.getAddress().getCity();
-            this.state = person.getAddress().getState();
-            this.zipCode = person.getAddress().getZipCode();
-        }
-    }
+
 }
 
