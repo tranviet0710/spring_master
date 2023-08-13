@@ -1,7 +1,9 @@
 package com.eazybytes.controllers;
 
+import com.eazybytes.model.Courses;
 import com.eazybytes.model.EazyClass;
 import com.eazybytes.model.Person;
+import com.eazybytes.services.CoursesService;
 import com.eazybytes.services.EazyClassService;
 import com.eazybytes.services.PersonService;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +31,7 @@ import java.util.List;
 public class AdminController {
     private final EazyClassService eazyClassService;
     private final PersonService personService;
+    private final CoursesService coursesService;
 
     @RequestMapping(value = "/displayClasses", method = {RequestMethod.GET})
     public ModelAndView displayClasses(@RequestParam(value = "error", required = false) String error) {
@@ -58,11 +61,6 @@ public class AdminController {
         }
         eazyClassService.save(eazyClass);
         return "redirect:/admin/displayClasses";
-    }
-
-    @RequestMapping(value = "/displayCourses", method = {RequestMethod.GET})
-    public String displayCourses() {
-        return "courses.html";
     }
 
     @RequestMapping(value = "/deleteClass", method = {RequestMethod.DELETE, RequestMethod.GET})
@@ -106,21 +104,76 @@ public class AdminController {
         foundPerson.setEazyClass(eazyClass);
         personService.save(foundPerson);
         eazyClass.getPersons().add(foundPerson);
-        EazyClass savedClass = eazyClassService.save(eazyClass);
-        session.setAttribute("eazyClass", savedClass);
-        return "redirect:/admin/displayStudents?classId=" + savedClass.getClassId();
+        session.setAttribute("eazyClass", eazyClass);
+        return "redirect:/admin/displayStudents?classId=" + eazyClass.getClassId();
     }
 
-    @RequestMapping(value="/deleteStudent", method = {RequestMethod.GET})
-    public String deleteStudent(@RequestParam Integer personId, HttpSession session){
+    @RequestMapping(value = "/deleteStudent", method = {RequestMethod.GET})
+    public String deleteStudent(@RequestParam Integer personId, HttpSession session) {
         EazyClass eazyClass = (EazyClass) session.getAttribute("eazyClass");
         Person foundPerson = personService.findById(personId);
         foundPerson.setEazyClass(null);
         personService.save(foundPerson);
         eazyClass.getPersons().remove(foundPerson);
-        EazyClass savedClass = eazyClassService.save(eazyClass);
-        session.setAttribute("eazyClass", savedClass);
-        return "redirect:/admin/displayStudents?classId=" + savedClass.getClassId();
+        session.setAttribute("eazyClass", eazyClass);
+        return "redirect:/admin/displayStudents?classId=" + eazyClass.getClassId();
+    }
+
+    @RequestMapping(value = "/displayCourses", method = {RequestMethod.GET})
+    public String displayCourses(Model model) {
+        List<Courses> courses = coursesService.getAllCourses();
+        model.addAttribute("course", new Courses());
+        model.addAttribute("courses", courses);
+        return "courses_secure.html";
+    }
+
+    @RequestMapping(value = "/addNewCourse", method = {RequestMethod.POST})
+    public String addNewCourse(@ModelAttribute Courses course, Model model) {
+        Courses foundCourse = coursesService.findByName(course.getName());
+        if (foundCourse == null) {
+            coursesService.save(course);
+        }
+        return "redirect:/admin/displayCourses";
+    }
+
+    @RequestMapping(value = "/viewStudents", method = {RequestMethod.GET})
+    public String displayStudents(@RequestParam Integer id, Model model, HttpSession session,
+                                  @RequestParam(required = false) String error) {
+        Courses course = coursesService.findById(id);
+        session.setAttribute("course", course);
+        model.addAttribute("courses", course);
+        model.addAttribute("person", new Person());
+        String errorMessage = null;
+        if (error != null) {
+            errorMessage = "Invalid Email entered!!";
+            model.addAttribute("errorMessage", errorMessage);
+        }
+        return "course_students";
+    }
+
+    @RequestMapping(value = "/addStudentToCourse", method = {RequestMethod.POST})
+    public String addStudentToCourse(@ModelAttribute Person person, HttpSession session) {
+        Person foundPerson = personService.findByEmail(person.getEmail());
+        Courses course = (Courses) session.getAttribute("course");
+        if (foundPerson == null) {
+            return "redirect:/admin/viewStudents?id=" + course.getCourseId() + "&error=true";
+        }
+        foundPerson.getCourses().add(course);
+        personService.save(foundPerson);
+        course.getPersons().add(foundPerson);
+        session.setAttribute("course", course);
+        return "redirect:/admin/viewStudents?id=" + course.getCourseId();
+    }
+
+    @RequestMapping(value = "/deleteStudentFromCourse", method = {RequestMethod.GET})
+    public String deleteStudentFromCourse(@RequestParam Integer personId, HttpSession session) {
+        Person foundPerson = personService.findById(personId);
+        Courses course = (Courses) session.getAttribute("course");
+        foundPerson.getCourses().remove(course);
+        personService.save(foundPerson);
+        course.getPersons().remove(foundPerson);
+        session.setAttribute("course", course);
+        return "redirect:/admin/viewStudents?id=" + course.getCourseId();
     }
 }
 

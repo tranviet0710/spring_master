@@ -21518,8 +21518,8 @@ label {
 }
 
 .control-label:after {
-    content:"*";
-    color:red;
+    content: "*";
+    color: red;
 }
 
 .close:not(:disabled):not(.disabled) {
@@ -21537,6 +21537,7 @@ button.close {
     border: 0;
     -webkit-appearance: none;
 }
+
 .close {
     float: right;
     font-size: 1.5rem;

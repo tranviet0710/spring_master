@@ -1,7 +1,6 @@
 package com.eazybytes.controllers;
 
 import com.eazybytes.model.Person;
-import com.eazybytes.model.Profile;
 import com.eazybytes.repository.PersonRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequiredArgsConstructor
 public class DashboardController {
     private final PersonRepository personRepository;
+
     @RequestMapping(value = "/dashboard", method = {RequestMethod.GET, RequestMethod.POST})
     public String displayDashboardPage(Authentication authentication, Model model, HttpSession session) throws Exception {
         Person person = personRepository.getByEmail(authentication.getName());

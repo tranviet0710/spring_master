@@ -28,6 +28,7 @@ import java.util.List;
 public class EazySchoolUsernamePwdAuthenticationProvider implements AuthenticationProvider {
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getName();
@@ -35,8 +36,7 @@ public class EazySchoolUsernamePwdAuthenticationProvider implements Authenticati
         Person person = personRepository.getByEmail(email);
         if (person != null && person.getPersonId() > 0 && passwordEncoder.matches(pwd, person.getPwd())) {
             return new UsernamePasswordAuthenticationToken(person.getEmail(), null, getGrantedAuthorities(person.getRoles()));
-        }
-        else {
+        } else {
             throw new BadCredentialsException("Bad credentials!");
         }
     }

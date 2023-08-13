@@ -17,11 +17,11 @@ import java.util.List;
 public class EazyClassService {
     private final EazyClassRepository eazyClassRepository;
 
-    public EazyClass save(EazyClass eazyClass){
+    public EazyClass save(EazyClass eazyClass) {
         return eazyClassRepository.save(eazyClass);
     }
 
-    public List<EazyClass> getAllClasses(){
+    public List<EazyClass> getAllClasses() {
         return eazyClassRepository.findAll();
     }
 
