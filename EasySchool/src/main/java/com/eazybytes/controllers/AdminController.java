@@ -98,7 +98,7 @@ public class AdminController {
     public String addStudent(@ModelAttribute Person person, HttpSession session) {
         EazyClass eazyClass = (EazyClass) session.getAttribute("eazyClass");
         Person foundPerson = personService.findByEmail(person.getEmail());
-        if (foundPerson == null) {
+        if (foundPerson == null || foundPerson.isAdmin()) {
             return "redirect:/admin/displayStudents?classId=" + eazyClass.getClassId() + "&error=true";
         }
         foundPerson.setEazyClass(eazyClass);
@@ -155,7 +155,7 @@ public class AdminController {
     public String addStudentToCourse(@ModelAttribute Person person, HttpSession session) {
         Person foundPerson = personService.findByEmail(person.getEmail());
         Courses course = (Courses) session.getAttribute("course");
-        if (foundPerson == null) {
+        if (foundPerson == null || foundPerson.isAdmin()) {
             return "redirect:/admin/viewStudents?id=" + course.getCourseId() + "&error=true";
         }
         foundPerson.getCourses().add(course);
