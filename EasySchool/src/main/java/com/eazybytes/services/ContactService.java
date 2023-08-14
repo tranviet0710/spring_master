@@ -5,6 +5,8 @@ import com.eazybytes.model.Contact;
 import com.eazybytes.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
 
@@ -49,6 +51,10 @@ public class ContactService {
             contact.setStatus(EazySchoolConstants.CLOSE);
             contactRepository.save(contact);
         }
+    }
+
+    public Page<Contact> getAllContactMessages(String status, Pageable pageable) {
+        return contactRepository.getContactsByStatus(status, pageable);
     }
 }
 

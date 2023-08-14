@@ -7,14 +7,17 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * @author VietDev
@@ -61,11 +64,23 @@ public class ContactController {
         return "redirect:/contact";
     }
 
-    @RequestMapping(value = "/displayMessages", method = RequestMethod.GET)
-    public ModelAndView displayMessages() {
+    @RequestMapping(value = "/displayMessages/{page}", method = RequestMethod.GET)
+    public ModelAndView displayMessages(@PathVariable Integer page,
+                                        @RequestParam String sortField,
+                                        @RequestParam String sortDir) {
+//        List<Contact> contacts = contactService.getAllContactMessages(EazySchoolConstants.OPEN);
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(page - 1, pageSize, sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
+        Page<Contact> contactPage = contactService.getAllContactMessages(EazySchoolConstants.OPEN, pageable);
+        List<Contact> contacts = contactPage.getContent();
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("contactMsgs", contacts);
+        modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("sortField", sortField);
+        modelAndView.addObject("sortDir", sortDir);
+        modelAndView.addObject("totalPages", contactPage.getTotalPages());
+        modelAndView.addObject("reversedSortDir", sortDir.equals("asc") ? "desc" : "asc");
         modelAndView.setViewName("messages.html");
-        modelAndView.addObject("contactMsgs", contactService.getAllContactMessages(EazySchoolConstants.OPEN));
         return modelAndView;
     }
 

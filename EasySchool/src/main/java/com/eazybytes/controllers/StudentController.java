@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequiredArgsConstructor
 public class StudentController {
     private final PersonService personService;
+
     @RequestMapping(value = "/displayCourses", method = {RequestMethod.GET})
-    public String displayCourses(Model model, Authentication authentication){
+    public String displayCourses(Model model, Authentication authentication) {
         Person foundPerson = personService.findByEmail(authentication.getName());
         model.addAttribute("person", foundPerson);
         return "courses_enrolled.html";

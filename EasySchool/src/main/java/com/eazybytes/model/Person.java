@@ -92,7 +92,7 @@ public class Person extends BaseEntity {
     )
     private Set<Courses> courses = new HashSet<>();
 
-    public Boolean isAdmin(){
+    public Boolean isAdmin() {
         return this.getRoles().getRoleName().equals("ADMIN");
     }
 }
