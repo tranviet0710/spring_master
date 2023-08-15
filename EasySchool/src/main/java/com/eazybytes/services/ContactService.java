@@ -44,17 +44,22 @@ public class ContactService {
         return contactRepository.getContactsByStatus(status);
     }
 
-    public void closeMessage(int id) {
-//        contactRepository.closeMessage(id, EazySchoolConstants.CLOSE);
-        Contact contact = contactRepository.findById(id).orElse(null);
-        if (contact != null) {
-            contact.setStatus(EazySchoolConstants.CLOSE);
-            contactRepository.save(contact);
+    public boolean closeMessage(int id) {
+//        Contact contact = contactRepository.findById(id).orElse(null);
+//        if (contact != null) {
+//            contact.setStatus(EazySchoolConstants.CLOSE);
+//            contactRepository.save(contact);
+//        }
+        boolean isClosed = false;
+        int rows = contactRepository.updateMsgStatus(id, EazySchoolConstants.CLOSE);
+        if (rows > 0) {
+            isClosed = true;
         }
+        return isClosed;
     }
 
     public Page<Contact> getAllContactMessages(String status, Pageable pageable) {
-        return contactRepository.getContactsByStatus(status, pageable);
+        return contactRepository.findOpenMsgs(status, pageable);
     }
 }
 

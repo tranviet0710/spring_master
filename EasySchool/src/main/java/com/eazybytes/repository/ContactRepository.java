@@ -21,11 +21,33 @@ import java.util.List;
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
     List<Contact> getContactsByStatus(String status);
 
+    //    JPQL
+    @Query("SELECT c FROM Contact c WHERE c.status=:status ")
+//    Native query
+//    @Query(value = "SELECT * FROM contact_msg c WHERE c.status= ?1", nativeQuery = true)
     Page<Contact> getContactsByStatus(String status, Pageable pageable);
 
     @Modifying
     @Transactional
     @Query("UPDATE Contact c SET c.status = :status WHERE c.contactID = :id")
-    void closeMessage(@PathParam("id") Integer id, @PathParam("status") String status);
+    int closeMessage(@PathParam("id") Integer id, @PathParam("status") String status);
+
+    /**
+     * NAMED QUERY
+     **/
+    Page<Contact> findOpenMsgs(String status, Pageable pageable);
+
+    @Modifying
+    @Transactional
+    int updateMsgStatus(@PathParam("id") Integer id, @PathParam("status") String status);
+
+    /**
+     * NAMED NATIVE QUERY
+     */
+    Page<Contact> findOpenMsgsNative(String status, Pageable pageable);
+
+    @Modifying
+    @Transactional
+    int updateMsgStatusNative(@PathParam("id") Integer id, @PathParam("status") String status);
 }
 
