@@ -20,6 +20,7 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf
                                 .ignoringRequestMatchers("/saveMsg")
+                                .ignoringRequestMatchers("/api/v1/**")
 //                        .ignoringRequestMatchers(PathRequest.toH2Console())
                                 .ignoringRequestMatchers("/public/**")
                 )
@@ -29,6 +30,7 @@ public class SecurityConfig {
                                 .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/student/**").hasRole("STUDENT")
+                                .requestMatchers("/api/v1/**").authenticated()
                                 .requestMatchers("/displayProfile").authenticated()
                                 .requestMatchers("/updateProfile").authenticated()
                                 .requestMatchers("/dashboard").authenticated()

@@ -51,7 +51,7 @@ public class ContactService {
 //            contactRepository.save(contact);
 //        }
         boolean isClosed = false;
-        int rows = contactRepository.updateMsgStatus(id, EazySchoolConstants.CLOSE);
+        int rows = contactRepository.closeMessage(id, EazySchoolConstants.CLOSE);
         if (rows > 0) {
             isClosed = true;
         }
@@ -59,7 +59,7 @@ public class ContactService {
     }
 
     public Page<Contact> getAllContactMessages(String status, Pageable pageable) {
-        return contactRepository.findOpenMsgs(status, pageable);
+        return contactRepository.getContactsByStatus(status, pageable);
     }
 }
 
