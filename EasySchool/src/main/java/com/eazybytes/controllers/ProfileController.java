@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date 11/08/2023
  * @role
  */
-@Controller
+@Controller("profileControllerBean")
 @RequiredArgsConstructor
 public class ProfileController {
     private final PersonRepository personRepository;

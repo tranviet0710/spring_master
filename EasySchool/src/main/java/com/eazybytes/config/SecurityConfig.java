@@ -34,6 +34,8 @@ public class SecurityConfig {
                                 .requestMatchers("/displayProfile").authenticated()
                                 .requestMatchers("/updateProfile").authenticated()
                                 .requestMatchers("/dashboard").authenticated()
+                                .requestMatchers("/data-api/**").authenticated()
+                                .requestMatchers("/persons/**").permitAll()
                                 .requestMatchers("/holidays/**").permitAll()
                                 .requestMatchers("/contact").permitAll()
                                 .requestMatchers("/saveMsg").permitAll()

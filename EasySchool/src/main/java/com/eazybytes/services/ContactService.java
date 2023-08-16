@@ -59,7 +59,7 @@ public class ContactService {
     }
 
     public Page<Contact> getAllContactMessages(String status, Pageable pageable) {
-        return contactRepository.getContactsByStatus(status, pageable);
+        return contactRepository.getContactsByStatusWithQuery(status, pageable);
     }
 }
 
