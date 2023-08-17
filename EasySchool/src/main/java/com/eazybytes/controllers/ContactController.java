@@ -1,5 +1,6 @@
 package com.eazybytes.controllers;
 
+import com.eazybytes.config.EazySchoolProps;
 import com.eazybytes.constants.EazySchoolConstants;
 import com.eazybytes.model.Contact;
 import com.eazybytes.services.ContactService;
@@ -26,6 +27,8 @@ import java.util.List;
  */
 @Controller
 public class ContactController {
+    @Autowired
+    private EazySchoolProps eazySchoolProps;
     private final ContactService contactService;
     private static final Logger log = LoggerFactory.getLogger(ContactController.class);
 
@@ -69,7 +72,10 @@ public class ContactController {
                                         @RequestParam String sortField,
                                         @RequestParam String sortDir) {
 //        List<Contact> contacts = contactService.getAllContactMessages(EazySchoolConstants.OPEN);
-        int pageSize = 5;
+        int pageSize = eazySchoolProps.getPageSize();
+        if (eazySchoolProps.getContact() != null && eazySchoolProps.getContact().get("pageSize") != null) {
+            pageSize = Integer.parseInt(eazySchoolProps.getContact().get("pageSize").trim());
+        }
         Pageable pageable = PageRequest.of(page - 1, pageSize, sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
         Page<Contact> contactPage = contactService.getAllContactMessages(EazySchoolConstants.OPEN, pageable);
         List<Contact> contacts = contactPage.getContent();

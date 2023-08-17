@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOGS" value="/Users/vietdev/Desktop/Udemy - Master Spring framework, Spring Boot, REST, JPA, Hibernate/spring_master/EasySchool" />
+    <property name="LOGS"
+              value="/Users/vietdev/Desktop/Udemy - Master Spring framework, Spring Boot, REST, JPA, Hibernate/spring_master/EasySchool"/>
 
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
@@ -34,14 +35,14 @@
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
     </root>
 
     <!-- LOG "com.eazybytes.eazyschool*" at ERROR level -->
     <logger name="com.eazybytes" level="error" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
     </logger>
 
 </configuration>
