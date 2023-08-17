@@ -29,6 +29,7 @@ public class SecurityConfig {
                                 .requestMatchers("/displayMessages/**").hasRole("ADMIN")
                                 .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/eazy-school/actuator/**").hasRole("ADMIN")
                                 .requestMatchers("/student/**").hasRole("STUDENT")
                                 .requestMatchers("/api/v1/**").authenticated()
                                 .requestMatchers("/displayProfile").authenticated()
